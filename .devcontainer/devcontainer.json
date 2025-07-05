@@ -8,7 +8,11 @@
   },
   "runArgs": [
     "--cap-add=NET_ADMIN",
-    "--cap-add=NET_RAW"
+    "--cap-add=NET_RAW",
+    "--tmpfs=/tmp:exec,size=1G",
+    "--tmpfs=/var/tmp:exec,size=512M",
+    "--tmpfs=/workspace/.npm:exec,size=512M",
+    "--tmpfs=/workspace/dist:exec,size=512M"
   ],
   "customizations": {
     "vscode": {
@@ -49,7 +53,8 @@
   "mounts": [
     "source=claude-code-bashhistory,target=/commandhistory,type=volume",
     "source=${localWorkspaceFolder}/.config/claude,target=/home/node/.claude,type=bind",
-    "source=claude-code-gh-config,target=/home/node/.config/gh,type=volume"
+    "source=claude-code-gh-config,target=/home/node/.config/gh,type=volume",
+    "source=${localWorkspaceFolderBasename}-node_modules,target=/workspace/node_modules,type=volume"
   ],
   "remoteEnv": {
     "NODE_OPTIONS": "--max-old-space-size=4096",
