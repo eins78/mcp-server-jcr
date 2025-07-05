@@ -120,6 +120,16 @@ fun `should throw exception when node not found`() { }
 
 ## Development Workflow
 
+### Devcontainer Maintenance
+- **IMPORTANT**: Before implementing features that require new tools, check if the devcontainer needs updating
+- If new tools are needed (e.g., databases, language runtimes, CLI tools), update `.devcontainer/Dockerfile` first
+- Remind the user to rebuild the devcontainer when changes are made
+- Keep the devcontainer minimal - only add tools specifically needed for this project
+- Current tools included:
+  - Docker and Docker Compose (for running services)
+  - OpenJDK 21 (for Spring Boot)
+  - Gradle 8.10 (for build automation)
+
 ### One Issue, One Pull Request Rule
 - **Goal**: Each GitHub issue should be solved by a single cohesive pull request
 - **Issue Sizing**: If an issue feels too large for one PR, split it into sub-issues

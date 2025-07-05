@@ -54,7 +54,8 @@
     "source=claude-code-bashhistory,target=/commandhistory,type=volume",
     "source=${localWorkspaceFolder}/.config/claude,target=/home/node/.claude,type=bind",
     "source=claude-code-gh-config,target=/home/node/.config/gh,type=volume",
-    "source=${localWorkspaceFolderBasename}-node_modules,target=/workspace/node_modules,type=volume"
+    "source=${localWorkspaceFolderBasename}-node_modules,target=/workspace/node_modules,type=volume",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],
   "remoteEnv": {
     "NODE_OPTIONS": "--max-old-space-size=4096",

@@ -22,7 +22,21 @@ RUN apt update && apt install -y \
   aggregate \
   curl \
   jq \
-  wget
+  wget \
+  docker.io \
+  docker-compose
+
+# Install Java and Kotlin development tools for MCP-JCR project
+RUN apt update && apt install -y \
+  openjdk-21-jdk \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Gradle (specific version for consistency)
+RUN wget https://services.gradle.org/distributions/gradle-8.10-bin.zip -P /tmp \
+  && unzip -d /opt/gradle /tmp/gradle-8.10-bin.zip \
+  && rm /tmp/gradle-8.10-bin.zip
+ENV GRADLE_HOME=/opt/gradle/gradle-8.10
+ENV PATH=$PATH:$GRADLE_HOME/bin
 
 
 # Ensure default node user has access to /usr/local/share
@@ -61,6 +75,9 @@ RUN ARCH=$(dpkg --print-architecture) && \
   wget "https://github.com/dandavison/delta/releases/download/0.18.2/git-delta_0.18.2_${ARCH}.deb" && \
   sudo dpkg -i "git-delta_0.18.2_${ARCH}.deb" && \
   rm "git-delta_0.18.2_${ARCH}.deb"
+
+# Add node user to docker group for Docker access
+RUN usermod -aG docker node
 
 # Set up non-root user
 USER node
