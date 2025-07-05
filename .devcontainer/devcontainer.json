@@ -64,5 +64,6 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
   "initializeCommand": "security -v unlock-keychain ~/Library/Keychains/login.keychain-db",
-  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh"
+  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh",
+  "postAttachCommand": "claude --dangerously-skip-permissions --model claude-opus-4-20250514 --continue || claude --dangerously-skip-permissions --model claude-opus-4-20250514"
 }
