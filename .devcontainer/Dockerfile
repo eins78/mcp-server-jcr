@@ -42,11 +42,6 @@ RUN git config --global user.name "Claude" && \
 git config --global user.email "claude@anthropic.com" && \
 git config --global commit.gpgsign false
 
-# Ensure gh config directory exists
-RUN mkdir -p /home/node/.config/gh \
-  && chown -R node:node /home/node/.config/gh
-
-
 # Set `DEVCONTAINER` environment variable to help with orientation
 ENV DEVCONTAINER=true
 # Set `EDITOR` so that git etc open editord in the devcontainer window
@@ -54,7 +49,11 @@ ENV EDITOR=code
 
 # Create workspace and config directories and set permissions
 RUN mkdir -p /workspace /home/node/.claude && \
-  chown -R node:node /workspace /home/node/.claude
+chown -R node:node /workspace /home/node/.claude
+
+# Create gh config directory and set permissions
+RUN mkdir -p /home/node/.config/gh \
+  && chown -R node:node /home/node/.config/gh
 
 WORKDIR /workspace
 
