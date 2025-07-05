@@ -1,40 +1,35 @@
-[Core] JCR Service Implementation
-**Labels:** `core`, `phase-1`, `high-priority`
-**Depends on:** #1
+[Core] First Working MCP Tool - Query
+**Labels:** `core`, `tools`, `phase-1`, `high-priority`
+**Depends on:** #1, #2
+**Delivers:** First tool accessible via MCP protocol
 
-#### 🎯 Goal
-Implement JcrService for managing JCR repository connections with session pooling.
+### 🎯 Value Delivered
+A working MCP server with one tool that can execute JCR queries - the first actual AI-usable feature!
 
-#### 📋 Tasks
-- [ ] Add Jackrabbit dependencies
-- [ ] Create JcrService interface
-- [ ] Implement session management with coroutines
-- [ ] Add connection configuration
-- [ ] Create unit tests with MockK
+### 📋 Tasks
+- [ ] Add Spring AI MCP dependencies
+- [ ] Configure MCP server
+- [ ] Create McpTool interface
+- [ ] Implement QueryTool
+- [ ] Register tool with MCP
+- [ ] Add MCP test client script
 
-#### 📁 Files to Create
-- `src/main/kotlin/com/example/mcpjcr/service/JcrService.kt`
-- `src/main/kotlin/com/example/mcpjcr/service/impl/JcrServiceImpl.kt`
-- `src/main/kotlin/com/example/mcpjcr/config/JcrConfig.kt`
-- `src/main/kotlin/com/example/mcpjcr/model/JcrProperties.kt`
-- `src/test/kotlin/com/example/mcpjcr/service/JcrServiceTest.kt`
+### 📁 Files to Create
+- `src/main/kotlin/com/example/mcpjcr/tools/McpTool.kt`
+- `src/main/kotlin/com/example/mcpjcr/tools/QueryTool.kt`
+- `src/main/kotlin/com/example/mcpjcr/config/McpConfig.kt`
+- `scripts/test-mcp-query.sh`
+- Update `build.gradle.kts` with MCP dependencies
 
-#### 📚 References
-- [Apache Jackrabbit Documentation](https://jackrabbit.apache.org/jcr/first-hops.html)
-- [MVP Spec - Architecture](/docs/mvp-spec-2025-07-05.md#️-architecture-overview)
-- [Kotlin Coroutines Guide](https://kotlinlang.org/docs/coroutines-guide.html)
+### 🧪 How to Test
+```bash
+# List available tools
+curl http://localhost:8181/mcp/tools
 
-#### 🔧 Implementation Details
-```kotlin
-interface JcrService {
-    suspend fun <T> executeInSession(block: suspend (Session) -> T): T
-    suspend fun isConnected(): Boolean
-    fun getRepository(name: String = "default"): Repository
-}
+# Execute query via MCP
+./scripts/test-mcp-query.sh "SELECT * FROM [nt:base] WHERE [jcr:path] = '/'"
+# Returns nodes in JSON format
 ```
 
-#### ✅ Acceptance Criteria
-- Can connect to local JCR repository
-- Session management works with coroutines
-- Proper error handling for connection failures
-- Unit tests pass with 80% coverage
+### ✅ Demo
+"Claude can now query our JCR repository using natural language!"

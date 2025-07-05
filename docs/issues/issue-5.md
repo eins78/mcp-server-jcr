@@ -1,27 +1,31 @@
 [Tools] Fetch Tool Implementation
 **Labels:** `tools`, `phase-1`, `high-priority`
-**Depends on:** #2, #3
+**Depends on:** #3
+**Delivers:** Second MCP tool for fetching node data
 
-#### 🎯 Goal
-Implement the Fetch tool for retrieving node data by path.
+### 🎯 Value Delivered
+Ability to fetch and inspect individual JCR nodes with all their properties.
 
-#### 📋 Tasks
+### 📋 Tasks
 - [ ] Implement FetchTool class
-- [ ] Handle node properties and metadata
-- [ ] Support multi-valued properties
-- [ ] Add path validation
-- [ ] Create integration tests
+- [ ] Add to tool registry
+- [ ] Update status page with new tool
+- [ ] Add integration test
+- [ ] Update test script
 
-#### 📁 Files to Create
+### 📁 Files to Create
 - `src/main/kotlin/com/example/mcpjcr/tools/FetchTool.kt`
 - `src/test/kotlin/com/example/mcpjcr/tools/FetchToolTest.kt`
+- Update `scripts/test-mcp-tools.sh`
 
-#### 📚 References
-- [JCR Node API](https://docs.adobe.com/docs/en/spec/jsr170/javadocs/jcr-2.0/javax/jcr/Node.html)
-- [MVP Spec - Tools List](/docs/mvp-spec-2025-07-05.md#-mcp-tools)
+### 🧪 How to Test
+```bash
+./scripts/test-mcp-tools.sh fetch --path "/"
+# Returns root node properties
 
-#### ✅ Acceptance Criteria
-- Fetches node by path correctly
-- Returns all properties with types
-- Handles non-existent paths with 404
-- Supports special characters in paths
+# Via Claude:
+# "Show me the properties of the root node"
+```
+
+### ✅ Demo
+"Now we can inspect any node in the repository!"

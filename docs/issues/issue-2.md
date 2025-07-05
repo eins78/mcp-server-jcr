@@ -1,43 +1,34 @@
-[Core] Spring AI MCP Server Configuration
+[Core] JCR Connection Service
 **Labels:** `core`, `phase-1`, `high-priority`
-**Depends on:** #1
+**Depends on:** #0, #1
+**Delivers:** Service that connects to JCR and can verify connection
 
-#### 🎯 Goal
-Configure Spring AI MCP server with WebFlux for handling MCP protocol requests.
+### 🎯 Value Delivered
+Ability to connect to JCR repository and verify the connection works.
 
-#### 📋 Tasks
-- [ ] Add Spring AI MCP dependencies
-- [ ] Configure MCP server properties
-- [ ] Create basic MCP server configuration class
-- [ ] Verify MCP endpoint is accessible
+### 📋 Tasks
+- [ ] Add Jackrabbit dependencies
+- [ ] Create JcrService interface and implementation
+- [ ] Add connection configuration
+- [ ] Create connection health indicator
+- [ ] Add connection test endpoint
 
-#### 📁 Files to Create/Modify
-- `build.gradle.kts` - Add Spring AI dependencies
-- `src/main/resources/application.yml` - MCP configuration
-- `src/main/kotlin/com/example/mcpjcr/config/McpServerConfig.kt`
+### 📁 Files to Create
+- `src/main/kotlin/com/example/mcpjcr/service/JcrService.kt`
+- `src/main/kotlin/com/example/mcpjcr/service/impl/JcrServiceImpl.kt`
+- `src/main/kotlin/com/example/mcpjcr/config/JcrConfig.kt`
+- `src/main/kotlin/com/example/mcpjcr/health/JcrHealthIndicator.kt`
+- `src/main/kotlin/com/example/mcpjcr/controller/TestController.kt`
 
-#### 📚 References
-- [Spring AI MCP Documentation](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html)
-- [MVP Spec - Application Configuration](/docs/mvp-spec-2025-07-05.md#application-configuration)
-- [MCP Protocol Overview](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-overview.html)
+### 🧪 How to Test
+```bash
+# With JCR running and app started:
+curl http://localhost:8181/actuator/health
+# Returns: {"status":"UP","components":{"jcr":{"status":"UP","details":{"repository":"jackrabbit","workspace":"default"}}}}
 
-#### 🔧 Implementation Details
-```yaml
-# application.yml
-spring:
-  ai:
-    mcp:
-      server:
-        name: jcr-server
-        version: 1.0.0
-        type: ASYNC
-        sse-message-endpoint: /mcp/messages
-        capabilities:
-          tool: true
-          resource: false
+curl http://localhost:8181/test/jcr-connection
+# Returns: {"connected":true,"nodeCount":5}
 ```
 
-#### ✅ Acceptance Criteria
-- MCP server endpoint accessible at `/mcp/messages`
-- Server capabilities properly advertised
-- Can connect with MCP client for testing
+### ✅ Demo
+"The server is connected to JCR and can count nodes!"

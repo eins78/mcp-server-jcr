@@ -1,26 +1,13 @@
-[Tools] SearchByFullText Tool Implementation
+[Tools] ListChildren Tool
 **Labels:** `tools`, `phase-1`, `high-priority`
-**Depends on:** #2, #3
+**Depends on:** #3
+**Delivers:** Browse JCR tree structure
 
-#### 🎯 Goal
-Implement full-text search functionality.
+### 🎯 Value Delivered
+Ability to explore repository structure by listing child nodes.
 
-#### 📋 Tasks
-- [ ] Implement SearchByFullTextTool class
-- [ ] Configure full-text indexing
-- [ ] Handle search within paths
-- [ ] Add result ranking
-- [ ] Create integration tests
-
-#### 📁 Files to Create
-- `src/main/kotlin/com/example/mcpjcr/tools/SearchByFullTextTool.kt`
-- `src/test/kotlin/com/example/mcpjcr/tools/SearchByFullTextToolTest.kt`
-
-#### 📚 References
-- [JCR Full-Text Search](https://jackrabbit.apache.org/oak/docs/query/fulltext.html)
-
-#### ✅ Acceptance Criteria
-- Finds nodes containing search terms
-- Searches within specified paths
-- Handles special characters
-- Returns relevant results
+### 🧪 How to Test
+```bash
+./scripts/test-mcp-tools.sh listChildren --path "/" --maxDepth 2
+# Returns tree structure
+```

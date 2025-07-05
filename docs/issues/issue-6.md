@@ -1,23 +1,33 @@
-[Tools] ListChildren Tool Implementation
-**Labels:** `tools`, `phase-1`, `high-priority`
-**Depends on:** #2, #3
+[Quality] Code Formatting with Ktlint
+**Labels:** `quality`, `phase-1`, `medium-priority`
+**Depends on:** #1
+**Delivers:** Consistent code formatting
 
-#### 🎯 Goal
-Implement the ListChildren tool for listing child nodes.
+### 🎯 Value Delivered
+Automated code formatting to maintain consistency across the project.
 
-#### 📋 Tasks
-- [ ] Implement ListChildrenTool class
-- [ ] Add depth limiting
-- [ ] Support node type filtering
-- [ ] Handle large child lists
-- [ ] Create integration tests
+### 📋 Tasks
+- [ ] Add Ktlint plugin to Gradle
+- [ ] Create .editorconfig
+- [ ] Format existing code
+- [ ] Add pre-commit hook
+- [ ] Document in README
 
-#### 📁 Files to Create
-- `src/main/kotlin/com/example/mcpjcr/tools/ListChildrenTool.kt`
-- `src/test/kotlin/com/example/mcpjcr/tools/ListChildrenToolTest.kt`
+### 📁 Files to Create
+- `.editorconfig`
+- `.git/hooks/pre-commit`
+- Update `build.gradle.kts`
 
-#### ✅ Acceptance Criteria
-- Lists immediate children correctly
-- Respects max depth parameter
-- Filters by node type if specified
-- Handles nodes without children
+### 🧪 How to Test
+```bash
+# Check formatting
+./gradlew ktlintCheck
+
+# Auto-format
+./gradlew ktlintFormat
+
+# Commit should trigger formatting check
+```
+
+### ✅ Demo
+"All code is now consistently formatted!"

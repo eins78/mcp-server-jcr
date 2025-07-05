@@ -1,47 +1,30 @@
-[Setup] Initial Kotlin Spring Boot Project Structure
+[Setup] Minimal Spring Boot Kotlin Project
 **Labels:** `setup`, `phase-1`, `high-priority`
+**Delivers:** Running Spring Boot application with health endpoint
 
-#### 🎯 Goal
-Set up the minimal Kotlin Spring Boot project structure with Gradle configuration to get a basic "Hello World" MCP server running.
+### 🎯 Value Delivered
+A working Kotlin Spring Boot application that starts and responds to health checks.
 
-#### 📋 Tasks
+### 📋 Tasks
 - [ ] Initialize Gradle project with Kotlin DSL
-- [ ] Add Spring Boot and core dependencies
-- [ ] Create basic application structure
-- [ ] Verify project builds and runs
+- [ ] Add minimal Spring Boot dependencies
+- [ ] Create main application class
+- [ ] Add health endpoint
+- [ ] Verify application starts
 
-#### 📁 Files to Create
-- `build.gradle.kts` - Based on MVP spec configuration
+### 📁 Files to Create
+- `build.gradle.kts` (minimal version)
 - `settings.gradle.kts`
 - `src/main/kotlin/com/example/mcpjcr/McpJcrServerApplication.kt`
-- `src/main/resources/application.yml`
-- `.gitignore`
-- `gradle.properties`
+- `src/main/resources/application.yml` (with just port config)
 
-#### 📚 References
-- [Spring Initializr](https://start.spring.io/)
-- [MVP Spec - Project Setup](/docs/mvp-spec-2025-07-05.md#-project-setup)
-- [Kotlin Spring Boot Guide](https://kotlinlang.org/docs/jvm-get-started-spring-boot.html)
-
-#### 🔧 Implementation Details
-```kotlin
-// build.gradle.kts starter
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
-
-plugins {
-    kotlin("jvm") version "2.0.21"
-    kotlin("plugin.spring") version "2.0.21"
-    id("org.springframework.boot") version "3.5.3"
-}
-
-dependencies {
-    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-}
+### 🧪 How to Test
+```bash
+./gradlew bootRun
+# In another terminal:
+curl http://localhost:8181/actuator/health
+# Returns: {"status":"UP"}
 ```
 
-#### ✅ Acceptance Criteria
-- Project builds with `./gradlew build`
-- Application starts with `./gradlew bootRun`
-- Basic health endpoint responds at http://localhost:8080/actuator/health
+### ✅ Demo
+"The server is running and healthy!"

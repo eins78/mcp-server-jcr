@@ -1,32 +1,33 @@
-[Tools] Query Tool Implementation
-**Labels:** `tools`, `phase-1`, `high-priority`
-**Depends on:** #2, #3
+[UI] Basic Status Web Page
+**Labels:** `ui`, `phase-1`, `medium-priority`
+**Depends on:** #2
+**Delivers:** Visual server status page
 
-#### 🎯 Goal
-Implement the Query tool for executing JCR-SQL2 queries.
+### 🎯 Value Delivered
+A web page showing server status, JCR connection, and available tools.
 
-#### 📋 Tasks
-- [ ] Create McpTool interface
-- [ ] Implement QueryTool class
-- [ ] Add query parameter validation
-- [ ] Implement result pagination
-- [ ] Create integration tests
+### 📋 Tasks
+- [ ] Add Spring Web dependencies
+- [ ] Create simple HTML template
+- [ ] Add status REST endpoint
+- [ ] Display connection and tool info
+- [ ] Add auto-refresh
 
-#### 📁 Files to Create
-- `src/main/kotlin/com/example/mcpjcr/tools/McpTool.kt`
-- `src/main/kotlin/com/example/mcpjcr/tools/QueryTool.kt`
-- `src/test/kotlin/com/example/mcpjcr/tools/QueryToolTest.kt`
+### 📁 Files to Create
+- `src/main/kotlin/com/example/mcpjcr/controller/WebController.kt`
+- `src/main/resources/templates/index.html`
+- `src/main/resources/static/css/simple.css`
 
-#### 📚 References
-- [JCR-SQL2 Query Syntax](https://jackrabbit.apache.org/oak/docs/query/query-engine.html)
-- [MVP Spec - Query Tool Example](/docs/mvp-spec-2025-07-05.md#example-read-only-tool-implementation)
+### 🧪 How to Test
+```bash
+# Open browser to:
+http://localhost:8181/
 
-#### 🔧 Implementation Details
-See MVP spec for full implementation example.
+# Should see:
+# - Server status: Running
+# - JCR connection: Connected
+# - Available tools: query
+```
 
-#### ✅ Acceptance Criteria
-- Executes JCR-SQL2 queries successfully
-- Respects limit parameter
-- Handles invalid queries gracefully
-- Returns structured JSON response
-- Integration tests pass
+### ✅ Demo
+"Open your browser and see the server status in real-time!"
