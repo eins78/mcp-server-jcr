@@ -94,8 +94,16 @@ This document outlines the project management approach for the MCP-JCR Server MV
 
 ## Issue Management
 
+### Tracking Issues
+For each major phase or milestone, create a META tracking issue that:
+- Lists all related implementation issues as GitHub task checkboxes
+- Defines the overall goal and success criteria
+- Links to relevant documentation
+- Provides a single view of progress
+- Example: Issue #14 tracks all MVP Phase 1 work
+
 ### Issue Structure
-Each issue follows this template:
+Each implementation issue follows this template:
 - **Value Delivered**: What working functionality this provides
 - **Tasks**: Specific actionable steps
 - **Files to Create**: Exact file paths and purposes

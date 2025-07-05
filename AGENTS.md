@@ -2,6 +2,8 @@
 
 This file contains development rules and guidelines for AI agents working on this MCP-JCR Kotlin server project.
 
+**Important**: Also review `docs/project-management.md` for issue workflow, tracking issues, and continuous value delivery approach.
+
 ## Project Overview
 
 This is an MCP (Model Context Protocol) server implementation for JCR (Java Content Repository) access, built with Kotlin and Spring Boot. The server enables LLM agents to interact with JCR repositories through standardized MCP tools.

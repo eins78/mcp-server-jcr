@@ -12,8 +12,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### When Starting Work
 1. Review `AGENTS.md` for development rules and conventions
-2. Check the MVP specification for implementation requirements
-3. Note: The devcontainer is currently configured for Node.js but the project requires Kotlin/Java setup
+2. Review `docs/project-management.md` for issue workflow and continuous value delivery approach
+3. Check the MVP specification for implementation requirements
+4. Look for META tracking issues (e.g., #14) to understand current phase goals
+5. Note: The devcontainer is currently configured for Node.js but the project requires Kotlin/Java setup
 
 ### Essential Commands
 ```bash
