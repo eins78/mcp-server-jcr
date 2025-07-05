@@ -37,9 +37,15 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
   && touch /commandhistory/.bash_history \
   && chown -R $USERNAME /commandhistory
 
+# Set git user name and email and disable signing
+RUN git config --global user.name "Claude" && \
+git config --global user.email "claude@anthropic.com" && \
+git config --global commit.gpgsign false
+
 # Ensure gh config directory exists
 RUN mkdir -p /home/node/.config/gh \
   && chown -R node:node /home/node/.config/gh
+
 
 # Set `DEVCONTAINER` environment variable to help with orientation
 ENV DEVCONTAINER=true
