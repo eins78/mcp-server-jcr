@@ -37,6 +37,10 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
   && touch /commandhistory/.bash_history \
   && chown -R $USERNAME /commandhistory
 
+# Ensure gh config directory exists
+RUN mkdir -p /home/node/.config/gh \
+  && chown -R node:node /home/node/.config/gh
+
 # Set `DEVCONTAINER` environment variable to help with orientation
 ENV DEVCONTAINER=true
 # Set `EDITOR` so that git etc open editord in the devcontainer window
@@ -85,3 +89,9 @@ RUN chmod +x /usr/local/bin/init-firewall.sh && \
   echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
   chmod 0440 /etc/sudoers.d/node-firewall
 USER node
+
+# Volumes
+VOLUME /home/node/.config/gh
+VOLUME /home/node/.claude
+VOLUME /commandhistory
+VOLUME /workspace
