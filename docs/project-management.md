@@ -110,13 +110,11 @@ Each implementation issue follows this template:
 - **How to Test**: Command-line validation steps
 - **Demo**: Stakeholder-friendly demonstration
 
-### One Issue, One Pull Request
-**Goal**: Each issue should be solved by a single cohesive pull request
-- **Issue Sizing**: If an issue feels too large for one PR, split it into sub-issues
-- **Cohesive Changes**: A PR should contain all code needed to complete the issue's value delivery
-- **Atomic Completion**: The PR should make the issue's demo scenario work end-to-end
-- **Exceptions**: In practice, some issues may require multiple PRs, but this should be rare
-- **Quality Gate**: If you need multiple PRs, consider if the issue should be split instead
+### Issue Sizing
+**Goal**: Each issue should be completable in a single cohesive pull request
+- If an issue feels too large for one PR, split it into smaller sub-issues
+- Each issue should deliver one complete piece of working functionality
+- See AGENTS.md for detailed workflow and branching guidelines
 
 ### Dependencies
 - **Minimize blocking chains**: Most issues depend on 1-2 others max
