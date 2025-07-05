@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content xmlns:jcr="http://www.jcp.org/jcr/1.0"
+         xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+         xmlns:mix="http://www.jcp.org/jcr/mix/1.0">
+    
+    <!-- Sample content structure for testing -->
+    <documents jcr:primaryType="nt:folder" jcr:mixinTypes="mix:created">
+        <policies jcr:primaryType="nt:folder">
+            <privacy-policy jcr:primaryType="nt:file">
+                <jcr:content jcr:primaryType="nt:resource"
+                            jcr:mimeType="text/plain"
+                            jcr:data="This is our privacy policy. We respect your data."
+                            jcr:lastModified="2025-01-01T00:00:00.000Z"/>
+            </privacy-policy>
+            <terms-of-service jcr:primaryType="nt:file">
+                <jcr:content jcr:primaryType="nt:resource"
+                            jcr:mimeType="text/plain"
+                            jcr:data="Terms of Service: By using this service, you agree to our terms."
+                            jcr:lastModified="2025-01-01T00:00:00.000Z"/>
+            </terms-of-service>
+        </policies>
+        
+        <reports jcr:primaryType="nt:folder">
+            <annual-report-2024 jcr:primaryType="nt:file">
+                <jcr:content jcr:primaryType="nt:resource"
+                            jcr:mimeType="application/pdf"
+                            jcr:data="[Binary data would go here]"
+                            jcr:lastModified="2024-12-31T00:00:00.000Z"/>
+            </annual-report-2024>
+            <quarterly-report-q4 jcr:primaryType="nt:file">
+                <jcr:content jcr:primaryType="nt:resource"
+                            jcr:mimeType="application/pdf"
+                            jcr:data="[Binary data would go here]"
+                            jcr:lastModified="2024-12-31T00:00:00.000Z"/>
+            </quarterly-report-q4>
+        </reports>
+    </documents>
+    
+    <products jcr:primaryType="nt:folder">
+        <electronics jcr:primaryType="nt:folder">
+            <laptop-x1 jcr:primaryType="nt:unstructured"
+                      productName="Laptop X1 Pro"
+                      price="1299.99"
+                      inStock="true"
+                      description="High-performance laptop with latest processor">
+                <specifications jcr:primaryType="nt:unstructured"
+                              cpu="Intel Core i9"
+                              ram="32GB"
+                              storage="1TB SSD"/>
+            </laptop-x1>
+            <smartphone-z2 jcr:primaryType="nt:unstructured"
+                          productName="Smartphone Z2"
+                          price="899.99"
+                          inStock="true"
+                          description="Latest smartphone with amazing camera">
+                <specifications jcr:primaryType="nt:unstructured"
+                              screen="6.5 inch OLED"
+                              camera="108MP"
+                              battery="5000mAh"/>
+            </smartphone-z2>
+        </electronics>
+        
+        <books jcr:primaryType="nt:folder">
+            <programming-kotlin jcr:primaryType="nt:unstructured"
+                              title="Programming in Kotlin"
+                              author="John Doe"
+                              isbn="978-1234567890"
+                              price="49.99"
+                              category="Technology"/>
+            <jcr-essentials jcr:primaryType="nt:unstructured"
+                           title="JCR Essentials"
+                           author="Jane Smith"
+                           isbn="978-0987654321"
+                           price="59.99"
+                           category="Technology"/>
+        </books>
+    </products>
+    
+    <blog jcr:primaryType="nt:folder">
+        <posts jcr:primaryType="nt:folder">
+            <welcome-post jcr:primaryType="nt:unstructured"
+                         title="Welcome to our JCR Repository"
+                         author="Admin"
+                         publishDate="2025-01-01T10:00:00.000Z"
+                         content="This is a sample blog post to demonstrate content structure in JCR."
+                         tags="jcr,welcome,tutorial"/>
+            <kotlin-tips jcr:primaryType="nt:unstructured"
+                        title="5 Kotlin Tips for Better Code"
+                        author="Dev Team"
+                        publishDate="2025-01-02T14:30:00.000Z"
+                        content="Here are some tips for writing better Kotlin code..."
+                        tags="kotlin,programming,tips"/>
+        </posts>
+    </blog>
+</content>

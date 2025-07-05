@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  jackrabbit:
+    image: apache/jackrabbit:2.23-SNAPSHOT
+    container_name: mcp-jcr-repository
+    ports:
+      - "8080:8080"
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    volumes:
+      - ./docker/jackrabbit/repository.xml:/opt/jackrabbit/repository.xml:ro
+      - ./docker/jackrabbit/sample-content:/opt/jackrabbit/sample-content:ro
+      - jackrabbit-data:/opt/jackrabbit/repository
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/repository/default"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+volumes:
+  jackrabbit-data:
+    driver: local
