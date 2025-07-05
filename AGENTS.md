@@ -118,6 +118,21 @@ fun `should return node data when path exists`() { }
 fun `should throw exception when node not found`() { }
 ```
 
+## Development Workflow
+
+### One Issue, One Pull Request Rule
+- **Goal**: Each GitHub issue should be solved by a single cohesive pull request
+- **Issue Sizing**: If an issue feels too large for one PR, split it into sub-issues
+- **Cohesive Changes**: A PR should contain all code needed to complete the issue's value delivery
+- **Atomic Completion**: The PR should make the issue's demo scenario work end-to-end
+- **Quality Gate**: If you need multiple PRs, consider if the issue should be split instead
+
+### Branch Strategy
+- Create feature branch from main: `git checkout -b feature/issue-N-short-description`
+- Work on single issue per branch
+- Create PR when issue is complete and tested
+- Merge to main after review
+
 ## Build and Development Commands
 
 ```bash
