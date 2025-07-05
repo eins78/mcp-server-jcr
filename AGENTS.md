@@ -8,15 +8,17 @@ This is an MCP (Model Context Protocol) server implementation for JCR (Java Cont
 
 ## Technology Stack
 
-- **Language**: Kotlin
-- **Framework**: Spring Boot 3.x with WebFlux
-- **Build Tool**: Gradle (Kotlin DSL)
+- **Language**: Kotlin 2.0+
+- **Framework**: Spring Boot 3.5+ with WebFlux (Reactive)
+- **Build Tool**: Gradle 8.10+ (Kotlin DSL)
 - **Key Dependencies**: 
-  - `spring-ai-starter-mcp-server-webflux` (MCP protocol support)
-  - Apache Jackrabbit (JCR implementation)
-  - JCR API
-- **Testing**: JUnit 5, MockK, Spring Boot Test
-- **Development Environment**: VS Code with devcontainer
+  - `spring-ai-starter-mcp-server-webflux` (MCP protocol - Spring AI 1.0.0-M7+)
+  - Apache Jackrabbit 2.23+ (JCR implementation)
+  - JCR API 2.0
+  - Kotlin Coroutines & Reactor integration
+- **Testing**: JUnit 5, MockK, Spring Boot Test, Kover (coverage)
+- **Code Quality**: Detekt, Ktlint
+- **Development Environment**: VS Code with devcontainer (requires Kotlin/JVM setup)
 
 ## Code Style and Conventions
 
@@ -43,6 +45,9 @@ com.example.mcpjcr/
 - Leverage extension functions for utility methods
 - Use `sealed class` for representing finite state sets
 - Apply `@JvmRecord` for interop when appropriate
+- Use `coroutineScope` and `suspend` functions for async operations
+- Prefer `buildJsonObject` and `buildJsonArray` for JSON construction
+- Use Kotlin DSL features in Gradle configuration
 
 ### Spring Boot Patterns
 - Use constructor injection (no `@Autowired` needed in Kotlin)
@@ -126,8 +131,8 @@ fun `should throw exception when node not found`() { }
 # Run with hot reload
 ./gradlew bootRun --continuous
 
-# Generate test report
-./gradlew jacocoTestReport
+# Generate test coverage report
+./gradlew test koverHtmlReport
 
 # Check code style
 ./gradlew ktlintCheck
@@ -135,11 +140,17 @@ fun `should throw exception when node not found`() { }
 # Format code
 ./gradlew ktlintFormat
 
+# Run static analysis
+./gradlew detekt
+
 # Build Docker image
-./gradlew bootBuildImage
+./gradlew bootBuildImage --imageName=mcp-jcr-server:latest
 
 # Clean build
 ./gradlew clean build
+
+# All quality checks
+./gradlew check
 ```
 
 ## Readonly Mode Implementation
@@ -196,9 +207,11 @@ mcp:
    - Cache frequently accessed data
 
 3. **Async Operations**
-   - Leverage Spring WebFlux's reactive model
-   - Use coroutines for async operations
-   - Implement proper backpressure handling
+   - Leverage Spring WebFlux's reactive model with Kotlin coroutines
+   - Use `suspend` functions and `Flow` for streaming data
+   - Implement proper backpressure handling with `buffer` and `conflate`
+   - Use `coroutineScope` for structured concurrency
+   - Apply `withContext(Dispatchers.IO)` for blocking JCR operations
 
 ## Documentation Requirements
 
