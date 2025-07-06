@@ -125,10 +125,24 @@ fun `should throw exception when node not found`() { }
 - If new tools are needed (e.g., databases, language runtimes, CLI tools), update `.devcontainer/Dockerfile` first
 - Remind the user to rebuild the devcontainer when changes are made
 - Keep the devcontainer minimal - only add tools specifically needed for this project
-- Current tools included:
-  - Docker and Docker Compose (for running services)
-  - OpenJDK 21 (for Spring Boot)
-  - Gradle 8.10 (for build automation)
+
+### Devcontainer Capabilities (Current State)
+**Working:**
+- ✅ Docker CLI (v20.10.24)
+- ✅ Docker Compose (v1.29.2)
+- ✅ Git and GitHub CLI
+- ✅ Basic shell tools (curl, wget, jq)
+
+**Not Working/Limited:**
+- ⚠️ Java: Only OpenJDK 17 available (need Java 21 for project)
+- ❌ Gradle: Not in PATH, JAVA_HOME issues
+- ❌ Kotlin compiler: Not installed
+
+**Testing Requirements:**
+- Always test what's available in devcontainer first
+- For Docker: Test compose files, container operations
+- For missing tools: Document in PR what needs manual testing
+- Update this capabilities list when devcontainer is updated
 
 ### One Issue, One Pull Request Rule
 - **Goal**: Each GitHub issue should be solved by a single cohesive pull request

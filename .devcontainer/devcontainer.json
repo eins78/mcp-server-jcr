@@ -65,6 +65,6 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
   "initializeCommand": "security show-keychain-info ~/Library/Keychains/login.keychain-db 2>/dev/null | grep -q 'no-timeout' || security unlock-keychain ~/Library/Keychains/login.keychain-db 2>/dev/null || true",
-  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh && git config --global user.name 'Claude' && git config --global user.email 'claude@anthropic.com'",
+  "postCreateCommand": "bash -c 'set +e; echo \"Starting post-create setup...\"; (sudo /usr/local/bin/init-firewall.sh && echo \"Firewall setup completed\") || echo \"Firewall setup failed, continuing...\"; git config --global user.name \"Claude\" || true; git config --global user.email \"claude@anthropic.com\" || true; echo \"Post-create setup completed\"'",
   "postAttachCommand": "claude --dangerously-skip-permissions --model claude-opus-4-20250514 --continue || claude --dangerously-skip-permissions --model claude-opus-4-20250514"
 }

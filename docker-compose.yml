@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   jackrabbit:
-    image: apache/jackrabbit:2.23-SNAPSHOT
+    image: jahia/jackrabbit:2.20.11
     container_name: mcp-jcr-repository
     ports:
       - "8080:8080"
