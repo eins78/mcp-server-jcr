@@ -15,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 2. Review `docs/project-management.md` for issue workflow and continuous value delivery approach
 3. Check the MVP specification for implementation requirements
 4. Look for META tracking issues (e.g., #14) to understand current phase goals
-5. Note: The devcontainer is currently configured for Node.js but the project requires Kotlin/Java setup
+5. Check `AGENTS.md` "Current Project Status" section for setup state
 
 ### Essential Commands
 ```bash
@@ -31,8 +31,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Use Kotlin's `use` blocks for JCR sessions (see `AGENTS.md` "Resource Management")
 - Implement readonly mode as per `AGENTS.md` "Readonly Mode Implementation"
 
-### Project Not Yet Initialized
-The Kotlin project structure needs to be created. Use Spring Initializr with:
-- Language: Kotlin
-- Dependencies: `spring-ai-starter-mcp-server-webflux`, `jackrabbit-core`, `jackrabbit-jcr2dav`
-- See full setup in MVP specification
+### Project Status
+- Build configuration complete (build.gradle.kts, settings.gradle.kts)
+- Docker setup complete for JCR repository
+- Source code implementation pending (Issue #3)

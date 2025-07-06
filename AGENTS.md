@@ -128,19 +128,24 @@ fun `should throw exception when node not found`() { }
 
 ### Devcontainer Capabilities (Current State)
 **Working:**
-- ✅ Docker CLI (v20.10.24)
-- ✅ Docker Compose (v1.29.2)
+- ✅ Docker CLI (v20.10.24) - Can interact with host Docker daemon
+- ✅ Docker Compose (v1.29.2) - Can run containers
 - ✅ Git and GitHub CLI
 - ✅ Basic shell tools (curl, wget, jq)
 
 **Not Working/Limited:**
 - ⚠️ Java: Only OpenJDK 17 available (need Java 21 for project)
-- ❌ Gradle: Not in PATH, JAVA_HOME issues
+- ⚠️ JAVA_HOME: Points to wrong architecture path (amd64 instead of arm64)
+- ❌ Gradle: Not installed globally, JAVA_HOME issues prevent usage
 - ❌ Kotlin compiler: Not installed
+- ⚠️ Docker volumes: Cannot mount workspace paths due to devcontainer limitations
+  - Host Docker daemon cannot access /workspace paths
+  - Workaround: Run containers without volume mounts for testing
 
 **Testing Requirements:**
 - Always test what's available in devcontainer first
-- For Docker: Test compose files, container operations
+- For Docker: Test compose files without volume mounts
+- For Gradle/Java: Manual testing required outside devcontainer
 - For missing tools: Document in PR what needs manual testing
 - Update this capabilities list when devcontainer is updated
 
@@ -159,6 +164,23 @@ fun `should throw exception when node not found`() { }
 
 ### Docker Image Guidelines
 - Prefer Debian-based Docker images where possible for consistency and security.
+
+## Current Project Status
+
+**Project Setup:**
+- ✅ Build configuration (build.gradle.kts) - Fully configured with all dependencies
+- ✅ Gradle wrapper restored (gradlew)
+- ✅ .gitignore updated with Kotlin/Gradle entries
+- ✅ Detekt configuration created
+- ✅ Docker Compose setup for Jackrabbit JCR repository
+- ❌ Source code not yet created - Project structure needs to be initialized
+- ❌ No application.yml configuration yet
+
+**Next Steps:**
+1. Initialize Kotlin source structure per package guidelines
+2. Create application configuration files
+3. Implement basic MCP server setup
+4. Add JCR connection service
 
 ## Build and Development Commands
 

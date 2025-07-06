@@ -10,7 +10,8 @@
     "--cap-add=NET_ADMIN",
     "--cap-add=NET_RAW",
     "--tmpfs=/tmp:exec,size=1G",
-    "--tmpfs=/var/tmp:exec,size=512M"
+    "--tmpfs=/var/tmp:exec,size=512M",
+    "--privileged"
   ],
   "customizations": {
     "vscode": {
@@ -60,10 +61,12 @@
     "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64",
     "GRADLE_HOME": "/opt/gradle/gradle-8.10",
     "CLAUDE_CONFIG_DIR": "/home/node/.claude",
-    "POWERLEVEL9K_DISABLE_GITSTATUS": "true"
+    "POWERLEVEL9K_DISABLE_GITSTATUS": "true",
+    "DOCKER_KEYCHAIN_NAME": "docker.keychain"
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
+  "initializeCommand": "security -v unlock-keychain ~/Library/Keychains/login.keychain-db",
   "postCreateCommand": "bash -c 'set +e; echo \"Starting post-create setup...\"; (sudo /usr/local/bin/init-firewall.sh && echo \"Firewall setup completed\") || echo \"Firewall setup failed, continuing...\"; git config --global user.name \"Claude\" || true; git config --global user.email \"claude@anthropic.com\" || true; echo \"Post-create setup completed\"'",
   "postAttachCommand": "claude --dangerously-skip-permissions --model claude-opus-4-20250514 --continue || claude --dangerously-skip-permissions --model claude-opus-4-20250514"
 }
