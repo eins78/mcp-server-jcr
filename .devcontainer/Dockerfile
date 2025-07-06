@@ -28,7 +28,7 @@ RUN apt update && apt install -y \
 
 # Install Java and Kotlin development tools for MCP-JCR project
 RUN apt update && apt install -y \
-  openjdk-21-jdk \
+  openjdk-17-jdk \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Gradle (specific version for consistency)
@@ -38,6 +38,8 @@ RUN wget https://services.gradle.org/distributions/gradle-8.10-bin.zip -P /tmp \
 ENV GRADLE_HOME=/opt/gradle/gradle-8.10
 ENV PATH=$PATH:$GRADLE_HOME/bin
 
+# Set proper Java home for JDK 17
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 # Ensure default node user has access to /usr/local/share
 RUN mkdir -p /usr/local/share/npm-global && \
@@ -62,8 +64,8 @@ ENV DEVCONTAINER=true
 ENV EDITOR=code
 
 # Create workspace and config directories and set permissions
-RUN mkdir -p /workspace /home/node/.claude && \
-chown -R node:node /workspace /home/node/.claude
+RUN mkdir -p /workspace /home/node/.claude /home/node/.gradle && \
+chown -R node:node /workspace /home/node/.claude /home/node/.gradle
 
 # Create gh config directory and set permissions
 RUN mkdir -p /home/node/.config/gh \
@@ -98,10 +100,8 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
-# Install npm global packages and Claude. corepack provides pnpm.
+# Install only essential npm packages for Claude Code
 RUN npm install -g \
-  corepack \
-  @antfu/ni \
   @anthropic-ai/claude-code
 
 # Copy and set up firewall script
@@ -115,5 +115,6 @@ USER node
 # Volumes
 VOLUME /home/node/.config/gh
 VOLUME /home/node/.claude
+VOLUME /home/node/.gradle
 VOLUME /commandhistory
 VOLUME /workspace

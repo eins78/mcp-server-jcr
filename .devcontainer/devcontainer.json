@@ -10,32 +10,31 @@
     "--cap-add=NET_ADMIN",
     "--cap-add=NET_RAW",
     "--tmpfs=/tmp:exec,size=1G",
-    "--tmpfs=/var/tmp:exec,size=512M",
-    "--tmpfs=/workspace/.npm:exec,size=512M",
-    "--tmpfs=/workspace/dist:exec,size=512M"
+    "--tmpfs=/var/tmp:exec,size=512M"
   ],
   "customizations": {
     "vscode": {
       "extensions": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
+        "fwcd.kotlin",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-gradle",
+        "vscjava.vscode-spring-initializr",
+        "vscjava.vscode-spring-boot-dashboard",
+        "pivotal.vscode-spring-boot",
         "eamodio.gitlens",
-        "Orta.vscode-twoslash-queries",
-        "nicoespeon.abracadabra",
-        "Tobermory.es6-string-html",
         "github.vscode-github-actions",
-        "Orta.vscode-jest",
         "timonwong.shellcheck",
-        "stylelint.vscode-stylelint",
         "cbrevik.toggle-format-on-save",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-json"
       ],
       "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+        "java.format.settings.profile": "GoogleStyle",
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.codeActionsOnSave": {
-          "source.fixAll.eslint": "explicit"
-        },
+        "kotlin.compiler.jvm.target": "17",
         "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.profiles.linux": {
           "bash": {
@@ -54,11 +53,12 @@
     "source=claude-code-bashhistory,target=/commandhistory,type=volume",
     "source=${localWorkspaceFolder}/.config/claude,target=/home/node/.claude,type=bind",
     "source=claude-code-gh-config,target=/home/node/.config/gh,type=volume",
-    "source=${localWorkspaceFolderBasename}-node_modules,target=/workspace/node_modules,type=volume",
+    "source=${localWorkspaceFolderBasename}-gradle-cache,target=/home/node/.gradle,type=volume",
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],
   "remoteEnv": {
-    "NODE_OPTIONS": "--max-old-space-size=4096",
+    "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64",
+    "GRADLE_HOME": "/opt/gradle/gradle-8.10",
     "CLAUDE_CONFIG_DIR": "/home/node/.claude",
     "POWERLEVEL9K_DISABLE_GITSTATUS": "true"
   },
