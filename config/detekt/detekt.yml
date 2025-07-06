@@ -29,7 +29,7 @@ complexity:
     threshold: 20
     includeStaticDeclarations: false
     includePrivateDeclarations: false
-  ComplexMethod:
+  CyclomaticComplexMethod:
     threshold: 15
     ignoreSingleWhenExpression: false
     ignoreSimpleWhenEntries: false
@@ -149,13 +149,11 @@ potential-bugs:
     active: false
   DontDowncastCollectionTypes:
     active: false
-  EqualsNullCall:
-    active: true
   ExplicitGarbageCollectionCall:
     active: true
   IgnoredReturnValue:
     active: true
-    restrictToAnnotatedMethods: true
+    restrictToConfig: true
     returnValueAnnotations:
       - '*.CheckResult'
       - '*.CheckReturnValue'
@@ -198,8 +196,6 @@ style:
   DestructuringDeclarationWithTooManyEntries:
     active: true
     maxDestructuringEntries: 3
-  EqualsNullCall:
-    active: true
   EqualsOnSignatureLine:
     active: false
   ExplicitCollectionElementAccessMethod:
@@ -210,12 +206,11 @@ style:
     active: false
   ForbiddenComment:
     active: true
-    values:
+    comments:
       - 'FIXME:'
       - 'STOPSHIP:'
       - 'TODO:'
     allowedPatterns: ''
-    customMessage: ''
   ForbiddenImport:
     active: false
   ForbiddenMethodCall:
@@ -250,7 +245,7 @@ style:
     ignoreEnums: false
     ignoreRanges: false
     ignoreExtensionFunctions: true
-  MandatoryBracesIfStatements:
+  BracesOnIfStatements:
     active: false
   MandatoryBracesLoops:
     active: false
@@ -282,7 +277,7 @@ style:
     active: true
   OptionalUnit:
     active: false
-  OptionalWhenBraces:
+  BracesOnWhenStatements:
     active: false
   PreferToOverPairSyntax:
     active: false

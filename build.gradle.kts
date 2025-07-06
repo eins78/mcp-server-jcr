@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.0.21"
     kotlin("plugin.spring") version "2.0.21"
+    kotlin("plugin.serialization") version "2.0.21"
     id("io.gitlab.arturbosch.detekt") version "1.23.7"
     id("org.jetbrains.kotlinx.kover") version "0.9.1"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
@@ -19,6 +20,7 @@ repositories {
 
 dependencies {
     // Spring Boot Platform BOM
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.5.3"))
     implementation(platform("org.springframework.ai:spring-ai-bom:1.0.0-M7"))
     // Spring Boot starters
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -30,6 +32,8 @@ dependencies {
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     // Jackson Kotlin support
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    // Kotlinx Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
