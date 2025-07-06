@@ -120,6 +120,35 @@ fun `should throw exception when node not found`() { }
 
 ## Development Workflow
 
+### Devcontainer Maintenance
+- **IMPORTANT**: Before implementing features that require new tools, check if the devcontainer needs updating
+- If new tools are needed (e.g., databases, language runtimes, CLI tools), update `.devcontainer/Dockerfile` first
+- Remind the user to rebuild the devcontainer when changes are made
+- Keep the devcontainer minimal - only add tools specifically needed for this project
+
+### Devcontainer Capabilities (Current State)
+**Working:**
+- ✅ Docker CLI (v20.10.24) - Can interact with host Docker daemon
+- ✅ Docker Compose (v1.29.2) - Can run containers
+- ✅ Git and GitHub CLI
+- ✅ Basic shell tools (curl, wget, jq)
+
+**Not Working/Limited:**
+- ⚠️ Java: Only OpenJDK 17 available (need Java 21 for project)
+- ⚠️ JAVA_HOME: Points to wrong architecture path (amd64 instead of arm64)
+- ❌ Gradle: Not installed globally, JAVA_HOME issues prevent usage
+- ❌ Kotlin compiler: Not installed
+- ⚠️ Docker volumes: Cannot mount workspace paths due to devcontainer limitations
+  - Host Docker daemon cannot access /workspace paths
+  - Workaround: Run containers without volume mounts for testing
+
+**Testing Requirements:**
+- Always test what's available in devcontainer first
+- For Docker: Test compose files without volume mounts
+- For Gradle/Java: Manual testing required outside devcontainer
+- For missing tools: Document in PR what needs manual testing
+- Update this capabilities list when devcontainer is updated
+
 ### One Issue, One Pull Request Rule
 - **Goal**: Each GitHub issue should be solved by a single cohesive pull request
 - **Issue Sizing**: If an issue feels too large for one PR, split it into sub-issues
@@ -132,6 +161,26 @@ fun `should throw exception when node not found`() { }
 - Work on single issue per branch
 - Create PR when issue is complete and tested
 - Merge to main after review
+
+### Docker Image Guidelines
+- Prefer Debian-based Docker images where possible for consistency and security.
+
+## Current Project Status
+
+**Project Setup:**
+- ✅ Build configuration (build.gradle.kts) - Fully configured with all dependencies
+- ✅ Gradle wrapper restored (gradlew)
+- ✅ .gitignore updated with Kotlin/Gradle entries
+- ✅ Detekt configuration created
+- ✅ Docker Compose setup for Jackrabbit JCR repository
+- ❌ Source code not yet created - Project structure needs to be initialized
+- ❌ No application.yml configuration yet
+
+**Next Steps:**
+1. Initialize Kotlin source structure per package guidelines
+2. Create application configuration files
+3. Implement basic MCP server setup
+4. Add JCR connection service
 
 ## Build and Development Commands
 
