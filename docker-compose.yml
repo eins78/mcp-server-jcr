@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   jackrabbit:
-    image: jahia/jackrabbit:2.20.11
+    image: foxtail/jackrabbit
     container_name: mcp-jcr-repository
     ports:
       - "8080:8080"

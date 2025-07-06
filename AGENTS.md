@@ -157,6 +157,9 @@ fun `should throw exception when node not found`() { }
 - Create PR when issue is complete and tested
 - Merge to main after review
 
+### Docker Image Guidelines
+- Prefer Debian-based Docker images where possible for consistency and security.
+
 ## Build and Development Commands
 
 ```bash
