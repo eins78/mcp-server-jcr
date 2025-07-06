@@ -9,15 +9,16 @@ done
 
 echo "Repository is ready. Initializing sample content..."
 
-# Note: In a production setup, you would use WebDAV or the JCR API to import content
-# For this MVP, we're documenting the manual process
+# Uploading sample content using WebDAV
+echo "Uploading sample content..."
+curl -u admin:admin -T /opt/jackrabbit/sample-content/content.xml http://localhost:8080/repository/default/sample-content.xml
 
-echo "Sample content structure is available at: docker/jackrabbit/sample-content/content.xml"
-echo "To import content, you can use the Jackrabbit web interface or JCR tools."
+if [ $? -eq 0 ]; then
+    echo "✅ Sample content uploaded successfully."
+else
+    echo "❌ Failed to upload sample content. Please check the repository and try again."
+fi
+
 echo ""
 echo "Repository is running at: http://localhost:8080"
 echo "WebDAV endpoint: http://localhost:8080/repository/default"
-echo ""
-echo "Default credentials:"
-echo "  Username: admin"
-echo "  Password: admin"

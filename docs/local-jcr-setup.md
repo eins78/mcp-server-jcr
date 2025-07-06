@@ -9,19 +9,25 @@ This guide explains how to run a local Apache Jackrabbit JCR repository for deve
 
 ## Quick Start
 
-1. **Start the repository:**
+1. **Test the setup:**
+   ```bash
+   ./scripts/test-jcr-setup.sh
+   ```
+   This ensures all configuration files are in place.
+
+2. **Start the repository:**
    ```bash
    docker-compose up -d
    ```
 
-2. **Verify it's running:**
+3. **Verify it's running:**
    ```bash
    curl http://localhost:8080/repository/default
    ```
 
    You should see XML output with repository information.
 
-3. **Access the web interface:**
+4. **Access the web interface:**
    - Open http://localhost:8080 in your browser
    - Default credentials: `admin` / `admin`
 
