@@ -1,6 +1,6 @@
 services:
   jackrabbit:
-    image: foxtail/jackrabbit
+    image: foxtail/jackrabbit:2.21.18
     container_name: mcp-jcr-repository
     ports:
       - "8080:8080"

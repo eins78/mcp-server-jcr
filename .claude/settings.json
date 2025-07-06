@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /workspace/scripts/log-prompt.js",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

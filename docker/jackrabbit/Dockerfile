@@ -19,7 +19,7 @@ USER jackrabbit
 WORKDIR /opt/jackrabbit
 
 # Download and install Jackrabbit
-ARG JACKRABBIT_VERSION=2.22.0
+ARG JACKRABBIT_VERSION=2.23
 RUN wget https://dlcdn.apache.org/jackrabbit/${JACKRABBIT_VERSION}/jackrabbit-standalone-${JACKRABBIT_VERSION}.jar -O /opt/jackrabbit/jackrabbit.jar
 
 # Expose port

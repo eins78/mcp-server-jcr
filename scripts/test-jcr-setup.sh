@@ -24,7 +24,7 @@ if [ ! -f "docker/jackrabbit/sample-content/content.xml" ]; then
     echo "❌ sample-content/content.xml not found!"
     exit 1
 fi
-echo "✅ sample-content.xml found"
+echo "✅ sample-content/content.xml found"
 
 echo ""
 echo "All configuration files are in place!"

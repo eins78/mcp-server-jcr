@@ -49,7 +49,7 @@ ARG USERNAME=node
 
 # Fix Docker socket permissions by adding node user to root group
 # Docker socket typically belongs to root:root with 660 permissions
-RUN usermod -aG root node
+RUN usermod -aG docker node
 
 # Persist bash history.
 RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
